@@ -1,0 +1,10 @@
+.progress-wrapper {
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: white;
+}

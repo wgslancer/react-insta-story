@@ -1,0 +1,19 @@
+.App {
+  min-height: 100vh;
+  text-align: center;
+  background-color: rgb(26, 25, 25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  min-width: 442px;
+  display: flex;
+  margin-bottom: 100px;
+}
+
+.container > * {
+  margin-right: 6px;
+}
