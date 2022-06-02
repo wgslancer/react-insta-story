@@ -50,7 +50,7 @@ function App() {
       progressBarRefs.current[currIndex - 1]?.replay();
     } else {
       currentProgressControl?.isPause
-        ? currentProgressControl?.resume()
+        ? currentProgressControl?.play()
         : currentProgressControl?.pause();
     }
   };

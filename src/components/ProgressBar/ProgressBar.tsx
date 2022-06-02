@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import { gsap } from "gsap";
 import {
   CSSProperties,
   forwardRef,
@@ -7,8 +7,8 @@ import {
   useImperativeHandle,
   useRef,
   useState,
-} from 'react';
-import './ProgressBar.style.css';
+} from "react";
+import "./ProgressBar.style.css";
 
 export interface ImperativeProgressBar {
   replay: () => void;
@@ -34,7 +34,6 @@ const ProgressBar = forwardRef(
     ref: Ref<ImperativeProgressBar>
   ) => {
     const progressRef = useRef(null);
-    const isPauseRef = useRef(false);
 
     const [isPause, setIsPause] = useState(false);
 
@@ -45,20 +44,22 @@ const ProgressBar = forwardRef(
           .timeline({
             defaults: {
               duration,
-              ease: 'linear',
+              ease: "linear",
             },
           })
           .fromTo(
             progressRef.current,
             { width: 0 },
             {
-              width: '100%',
+              width: "100%",
             }
           )
-          .eventCallback('onComplete', () => {
+          .eventCallback("onComplete", () => {
             onComplete?.();
+          })
+          .eventCallback("onStart", () => {
+            setIsPause(false);
           });
-        setIsPause(false);
       }
     }, []);
 
@@ -80,11 +81,13 @@ const ProgressBar = forwardRef(
     };
     const handleReset = () => {
       tween.current?.play(0).pause();
+      setIsPause(false);
     };
     const handleResume = () => {
       tween.current?.resume();
       setIsPause(false);
     };
+
     useImperativeHandle<ImperativeProgressBar, ImperativeProgressBar>(
       ref,
       () => ({
