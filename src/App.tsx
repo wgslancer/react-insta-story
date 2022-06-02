@@ -1,22 +1,27 @@
-import React, { Ref, useEffect, useRef, useState } from 'react';
-import './App.css';
-import ProgressBar, { ImperativeProgressBar } from './components/ProgressBar';
+import React, { Ref, useEffect, useRef, useState } from "react";
+import "./App.css";
+import ProgressBar, { ImperativeProgressBar } from "./components/ProgressBar";
 
 type Image = {
   path: string;
 };
 
 const images: Array<Image> = [
-  { path: '01' },
-  { path: '02' },
-  { path: '03' },
-  { path: '04' },
-  { path: '05' },
-  { path: '06' },
-  { path: '07' },
-  { path: '08' },
-  { path: '09' },
-  { path: '010' },
+  {
+    path: "https://images.unsplash.com/photo-1654106933587-df504eb45781?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+  },
+  {
+    path: "https://images.unsplash.com/photo-1654139368702-b79142c8dcaa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+  },
+  {
+    path: "https://images.unsplash.com/photo-1654096317770-8fbde5c88d2a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+  },
+  {
+    path: "https://images.unsplash.com/photo-1654140785899-6148f8fa06f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+  },
+  {
+    path: "https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80",
+  },
 ];
 
 function App() {
@@ -30,7 +35,7 @@ function App() {
     setCurrIndex(newIndex);
   };
   const handleNext = () => {
-    if (currIndex < images.length) {
+    if (currIndex < images.length - 1) {
       setCurrIndex(currIndex + 1);
       progressBarRefs.current[currIndex + 1]?.play();
     }
@@ -60,7 +65,7 @@ function App() {
               pause={index !== currIndex}
               isFinished={index < currIndex}
               onComplete={() => {
-                if (index < images.length) {
+                if (index < images.length - 1) {
                   changeCurrIndex(index + 1);
                   progressBarRefs.current[index + 1]?.play();
                 }
@@ -70,6 +75,13 @@ function App() {
             />
           );
         })}
+      </div>
+      <div>
+        <img
+          style={{ maxWidth: 400, objectFit: "cover" }}
+          src={images[currIndex].path}
+          alt=''
+        />
       </div>
       <div>
         <button onClick={handlePrev}>Prev</button>
