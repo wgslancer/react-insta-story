@@ -34,6 +34,13 @@ function App() {
   const changeCurrIndex = (newIndex: number) => {
     setCurrIndex(newIndex);
   };
+
+  const handlePause = () => {
+    progressBarRefs.current[currIndex]?.pause();
+  };
+  const handlePlay = () => {
+    progressBarRefs.current[currIndex]?.play();
+  };
   const handleNext = () => {
     if (currIndex < images.length - 1) {
       setCurrIndex(currIndex + 1);
@@ -78,6 +85,8 @@ function App() {
       </div>
       <div>
         <img
+          onMouseOver={handlePause}
+          onMouseLeave={handlePlay}
           style={{ maxWidth: 400, objectFit: "cover" }}
           src={images[currIndex].path}
           alt=''
